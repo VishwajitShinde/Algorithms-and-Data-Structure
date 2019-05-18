@@ -1,15 +1,17 @@
-package com.ds.linkedlist;
+        package com.ds.linkedlist;
 
 public class LinkedList {
 
 	Node head;
 	Node tail;
+	int length = 0;
 	
 	public boolean insertAtHead(Node newNode, Node head){
 		boolean flag = true;
 		try {
 			newNode.setNext(head);
 			head = newNode;
+			length++;
 			System.out.println("Inserted new element at head: " + head.getData());
 		}catch(Exception e) {
 			flag = false;
@@ -23,6 +25,7 @@ public class LinkedList {
 		try {
 			tail.setNext(newNode);
 			tail = newNode;
+			length++;
 			System.out.println("Inserted new element at tail: " + tail.getData());
 		}catch(Exception e) {
 			flag = false;
@@ -42,6 +45,7 @@ public class LinkedList {
 		Node next = head.getNext();
 		newNode.setNext(next);
 		head.setNext(newNode);
+		length++;
 		
 		System.out.println("Inserted new element at " + index + " index: " + newNode.getData());
 		}catch(Exception e) {
@@ -59,7 +63,7 @@ public class LinkedList {
 			
 			System.out.println("Deleted element at head: " + temp.getData());
 			temp = null;
-			
+			length--;	
 		}catch(Exception e){
 			flag = false;
 			e.printStackTrace();
@@ -80,6 +84,7 @@ public class LinkedList {
 		
 		System.out.println("Deleted element at tail: " + temp.getData());
 		temp = null;
+		length--;
 		
 		return flag;
 	}
@@ -99,6 +104,7 @@ public class LinkedList {
 
 		System.out.println("Deleted element at " + index + " index: " + temp.getData());
 		temp = null;
+		length--;
 		
 		}catch(Exception e) {
 			flag = false;
@@ -121,6 +127,7 @@ public class LinkedList {
 				list.tail.setNext(node);
 				list.tail = node;
 			}
+			list.length++;
 		}
 		
 		list.print(list);
