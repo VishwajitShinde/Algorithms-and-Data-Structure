@@ -1,4 +1,4 @@
-        package com.ds.linkedlist;
+package com.ds.linkedlist;
 
 public class LinkedList {
 
@@ -6,35 +6,34 @@ public class LinkedList {
 	Node tail;
 	int length = 0;
 	
-	public boolean insertAtHead(Node newNode, Node head){
-		boolean flag = true;
+	public Node insertAtHead(Node head, int data){
+		
 		try {
+			Node newNode = new Node(data);
 			newNode.setNext(head);
 			head = newNode;
 			length++;
 			System.out.println("Inserted new element at head: " + head.getData());
 		}catch(Exception e) {
-			flag = false;
 			e.printStackTrace();
 		}
-		return flag;
+		return head;
 	}
 	
-	public boolean insertAtTail(Node newNode, Node tail) {
-		boolean flag = true;
+	public Node insertAtTail(Node tail, int data) {
 		try {
+			Node newNode = new Node(data);
 			tail.setNext(newNode);
 			tail = newNode;
 			length++;
 			System.out.println("Inserted new element at tail: " + tail.getData());
 		}catch(Exception e) {
-			flag = false;
 			e.printStackTrace();
 		}
-		return flag;
+		return tail;
 	}
 	
-	public boolean insertAtIndex(Node newNode, Node head, int index) {
+	public boolean insertAtIndex(Node head, int data, int index) {
 		boolean flag = true;
 		int i = 1;
 		try {
@@ -42,6 +41,7 @@ public class LinkedList {
 			head = head.getNext();
 			i++;
 		}
+		Node newNode = new Node(data);
 		Node next = head.getNext();
 		newNode.setNext(next);
 		head.setNext(newNode);
@@ -133,18 +133,16 @@ public class LinkedList {
 		list.print(list);
 
 		// insert at head
-		Node newHead = new Node(10);
-		list.insertAtHead(newHead, list.head);
+		list.head = list.insertAtHead(list.head, 10);
 		list.print(list);
+		System.out.println("Head " + list.head.getData());
 		
 		// insert at tail
-		Node newTail = new Node(20);
-		list.insertAtTail(newTail, list.tail);
+		list.tail = list.insertAtTail(list.tail, 20);
 		list.print(list);
 
 		// insert at index
-		Node newElement = new Node(30);
-		list.insertAtIndex(newElement, list.head, 3);
+		list.insertAtIndex(list.head, 30, 3);
 		list.print(list);
 		
 	}
